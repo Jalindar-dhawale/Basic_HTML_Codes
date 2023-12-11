@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.min.js"></script>  
+        <script src="js/jquery.js"></script>
+</head>
+<body>
+         <div class="container mt-5" id="data">
+              <button type="button" class="btn btn-primary m-2" id="load">Load function</button>
+              <button type="button" class="btn btn-primary m-2" id="get">$.get function</button>
+              <button type="button" class="btn btn-primary m-2" id="post">$.post function</button>
+              <button type="button" class="btn btn-primary m-2" id="ajax">$.Ajax</button>
+         <button type="button" class="btn btn-primary m-5" id="jsondata">Load JSON ($.getJSON) </button><br>
+         <div class="row">
+         <div id="data1" class=" fw-bold bg-danger  col-3">data1</div>
+         <div id="data2" class="fw-bold bg-warning col-3">data2</div>
+         <div id="data3" class="fw-bold bg-info col-3">data3</div>
+         <div id="data4" class="fw-bold bg-primary col-3">data4</div>
+        </div>
+        <div id="data5" class="fw-bold bg-primary col-3">data5</div>
+        <div class="col-4">
+            <table id="tab1" class="table table-bordered">
+
+            </table>
+         </div>
+        </div>
+
+  <script>
+   $(document).ready(()=>{
+        $("#load").click(()=>{
+            $("#data1").load("remembermecookie.html")
+        })
+        $("#get").click(()=>{
+            $.get("remembermecookie.html",(res)=>{
+                $("#data2").html(res)
+            })
+        })
+
+        $("#post").click(()=>{
+            $.post("remembermecookie.html",{username:'abc@gmail.com',pwd:'12345'},(res)=>{
+                $("#data3").html(res)
+            })
+        })
+        $("#ajax").click(()=>{
+            $.ajax({
+                url:'remembermecookie.html',
+                type:'get',
+                success:(res)=>{
+                $("#data4").html(res)
+            }            
+        })
+        })
+
+        $("#jsondata").click(()=>{
+            $.getJSON("Student.json",(res)=>{
+                // $("#data5").html(res[0].rollno)
+                let data=''
+                $("#tab1").append(`<tr><td>Rollno</td><td>Name</td><td>Age</td></tr>`)
+                $.each(res,(key,value)=>{
+                    data+='<tr>'
+                    data+=`<td>${value.rollno}</td>`
+                    data+=`<td>${value.name}</td>`
+                    data+=`<td>${value.age}</td>`
+                    data+='</tr>'
+                })
+                $("#tab1").append(data)
+            })
+        })
+    })
+ </script>    
+</body>
+</html>

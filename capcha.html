@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0">
+	</head>
+<body onload="generate()">
+	<div id="user-input" class="inline">
+		<input type="text" id="submit"
+			placeholder="Captcha code" />
+	</div>
+
+	<div class="inline" onclick="generate()">
+		<i class="fas fa-sync"></i>
+	</div>
+
+	<div id="image" class="inline" selectable="False">
+	</div>
+	<input type="submit" id="btn" onclick="printmsg()" />
+
+	<p id="key"></p>
+    <script>
+        var captcha;
+function generate() {
+
+	document.getElementById("submit").value = "";
+	captcha = document.getElementById("image");
+	var uniquechar = "";
+
+	const randomchar =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	for (let i = 1; i < 5; i++) {
+		uniquechar += randomchar.charAt(
+			Math.random() * randomchar.length)
+	}
+	captcha.innerHTML = uniquechar;
+}
+
+function printmsg() {
+	const usr_input = document
+		.getElementById("submit").value;
+	if (usr_input == captcha.innerHTML) {
+		var s = document.getElementById("key")  
+			.innerHTML = "Matched";
+		generate();
+	}
+	else {
+		var s = document.getElementById("key")
+			.innerHTML = "not Matched";
+		generate();
+	}
+}
+
+    </script>
+
+
+
+
+</body>
+
+</head>

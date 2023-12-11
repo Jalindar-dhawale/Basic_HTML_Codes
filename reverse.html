@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>reverse</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+<div style="margin-top:7cm; margin-left: 10cm; background-color: antiquewhite; height: 5cm; width: 10cm;">
+   <div style="position: absolute; margin-left: 2cm;">
+    <br/><br/><br/>
+    <span s> Enter a Number </span>
+    <br/>
+    <br/>
+    <input type="number" id="num">
+    <button type="button" onclick="reverse()">Reverse</button>
+    <p id="id1"></p>
+</div>
+    <script>
+        function reverse(){
+            var a= document.getElementById("num").value
+            var b,sum=0;
+            var z=a;
+while(a>0)
+{
+    b=a%10;
+    sum=sum*10+b;
+    a=parseInt(a/10);
+
+}
+document.getElementById("id1").innerHTML=""+sum    
+}
+    </script>
+</body>
+</div>
+</html>
